@@ -279,16 +279,15 @@ function updateAndFilterDisplay() {
                    s.CGPA >= min && s.CGPA <= max;
         });
 
-    if (term) filteredStudents.sort((a,b) => b.matchScore - a.matchScore || b.CGPA - a.CGPA);
-    else {
-        switch (sortBy.value) {
-            case 'cgpa_desc': filteredStudents.sort((a,b) => b.CGPA - a.CGPA); break;
-            case 'cgpa_asc': filteredStudents.sort((a,b) => a.CGPA - b.CGPA); break;
-            case 'semester_desc': filteredStudents.sort((a,b) => b.Semester - a.Semester); break;
-            case 'semester_asc': filteredStudents.sort((a,b) => a.Semester - b.Semester); break;
-            case 'name_asc': filteredStudents.sort((a,b) => a['Student Name'].localeCompare(b['Student Name'])); break;
-        }
+    
+    switch (sortBy.value) {
+        case 'cgpa_desc': filteredStudents.sort((a,b) => b.CGPA - a.CGPA); break;
+        case 'cgpa_asc': filteredStudents.sort((a,b) => a.CGPA - b.CGPA); break;
+        case 'semester_desc': filteredStudents.sort((a,b) => b.Semester - a.Semester); break;
+        case 'semester_asc': filteredStudents.sort((a,b) => a.Semester - b.Semester); break;
+        case 'name_asc': filteredStudents.sort((a,b) => a['Student Name'].localeCompare(b['Student Name'])); break;
     }
+    
 
     currentPage = 1;
     if (filteredStudents.length === 0) {
@@ -319,3 +318,4 @@ goToChartBtn.addEventListener('click', () => document.getElementById('cgpaChart'
 goToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 loadData();
+
