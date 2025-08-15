@@ -1,7 +1,5 @@
-// --- CONFIGURATION ---
 const CSV_FILE_PATH = 'mit_cgpa.csv';
 
-// --- DOM ELEMENT REFERENCES ---
 const courseFilter = document.getElementById('courseFilter');
 const sectionFilter = document.getElementById('sectionFilter');
 const semesterFilter = document.getElementById('semesterFilter');
@@ -19,7 +17,6 @@ const nextBtnLi = document.getElementById('next-btn-li');
 const pageInfoDiv = document.getElementById('pageInfo');
 const paginationControls = document.getElementById('pagination-controls');
 
-// Chart-specific elements
 const chartByFilter = document.getElementById('chartBy');
 const chartTitle = document.getElementById('chartTitle');
 const goToChartBtn = document.getElementById('goToChartBtn');
@@ -30,9 +27,8 @@ let filteredStudents = [];
 let currentPage = 1;
 const rowsPerPage = 100;
 
-let myChart; // Chart.js instance
+let myChart; 
 
-// --- DATA UTILITIES ---
 function convertSemester(semesterStr) {
     if (!semesterStr) return 0;
     const str = String(semesterStr).toUpperCase().trim();
@@ -49,7 +45,6 @@ function getGpaClass(gpa) {
     return 'gpa-fail';
 }
 
-// Medal SVG for top ranks
 function getMedal(rank) {
     const map = {
         1: { fill: 'gold', num: '1' },
@@ -64,7 +59,6 @@ function getMedal(rank) {
             </svg>`;
 }
 
-// Simple Levenshtein distance
 function levenshtein(a, b) {
     const m = [];
     for (let i = 0; i <= b.length; i++) m[i] = [i];
@@ -83,7 +77,6 @@ function levenshtein(a, b) {
     return m[b.length][a.length];
 }
 
-// --- CHART INITIALIZATION ---
 function initializeChart() {
     const ctx = document.getElementById('cgpaChart').getContext('2d');
     myChart = new Chart(ctx, {
@@ -137,7 +130,6 @@ function initializeChart() {
     });
 }
 
-// --- CHART UPDATE ---
 function updateChart() {
     if (!myChart) return;
 
@@ -188,7 +180,6 @@ function updateChart() {
     myChart.update();
 }
 
-// --- DATA FETCH & INIT ---
 function loadData() {
     Papa.parse(CSV_FILE_PATH, {
         download: true, header: true, skipEmptyLines: true,
@@ -219,7 +210,6 @@ function populateFilters() {
     addOptions(semesterFilter, [...new Set(allStudents.map(s => s.Semester))].filter(s => s>0).sort((a,b)=>a-b));
 }
 
-// --- DISPLAY ---
 function displayPage() {
     const startIndex = (currentPage - 1) * rowsPerPage;
     const paginated = filteredStudents.slice(startIndex, startIndex + rowsPerPage);
@@ -301,7 +291,6 @@ function updateAndFilterDisplay() {
     updateChart();
 }
 
-// --- EVENT LISTENERS ---
 [courseFilter, sectionFilter, semesterFilter, minCgpaInput, maxCgpaInput, sortBy, searchNameInput, chartByFilter]
     .forEach(el => el && el.addEventListener('input', updateAndFilterDisplay));
 
@@ -318,4 +307,5 @@ goToChartBtn.addEventListener('click', () => document.getElementById('cgpaChart'
 goToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 loadData();
+
 
