@@ -1,0 +1,88 @@
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 1rem;
+}
+
+.table {
+    --bs-table-hover-bg: #e7f1ff;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+/* ---------- ROW COLORING (override Bootstrap) ---------- */
+/* Vibrant colors for GPA intervals */
+#leaderboard-body tr.gpa-high > * {
+    background-color: #4CAF50 !important; /* vibrant green */
+    color: #000000 !important;
+}
+#leaderboard-body tr.gpa-good > * {
+    background-color: #FFD700 !important; /* vibrant gold-yellow */
+    color: #000 !important;
+}
+#leaderboard-body tr.gpa-mid > * {
+    background-color: #FFA500 !important; /* vibrant orange */
+    color: #000000 !important;
+}
+#leaderboard-body tr.gpa-low > * {
+    background-color: #FF6347 !important; /* tomato red */
+    color: #000000 !important;
+}
+#leaderboard-body tr.gpa-fail > * {
+    background-color: #DC143C !important; /* crimson */
+    color: #000000 !important;
+}
+
+/* Gold medal row - metallic gold */
+#leaderboard-body tr.row-gold {
+    background: linear-gradient(90deg, #FFD700 0%, #FFA500 30%, #FFED4E 50%, #FFA500 70%, #FFD700 100%) !important;
+}
+#leaderboard-body tr.row-gold td {
+    background: inherit !important;
+    color: #000 !important;
+    font-weight: bold;
+}
+
+/* Silver medal row - metallic silver */
+#leaderboard-body tr.row-silver {
+    background: linear-gradient(90deg, #C0C0C0 0%, #E8E8E8 30%, #F5F5F5 50%, #E8E8E8 70%, #C0C0C0 100%) !important;
+}
+#leaderboard-body tr.row-silver td {
+    background: inherit !important;
+    color: #000 !important;
+    font-weight: bold;
+}
+
+/* Bronze medal row - metallic bronze */
+#leaderboard-body tr.row-bronze {
+    background: linear-gradient(90deg, #CD7F32 0%, #D2691E 30%, #DAA520 50%, #D2691E 70%, #CD7F32 100%) !important;
+}
+#leaderboard-body tr.row-bronze td {
+    background: inherit !important;
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+/* Hover highlight for any row - deep blue with black text */
+#leaderboard-body tr:hover {
+    background: #1e3a8a !important;
+}
+#leaderboard-body tr:hover td {
+    background: inherit !important;
+    color: #000 !important;
+}
+
+/* ---------- Rank Medal Icon (SVG fits inline) ---------- */
+.rank-medal {
+    display: inline-flex;
+    vertical-align: middle;
+    width: 28px;
+    height: 28px;
+}
